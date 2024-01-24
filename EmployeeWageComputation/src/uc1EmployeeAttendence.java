@@ -1,23 +1,28 @@
+import java.util.LinkedList;
+import java.util.Map;
+
 public class uc1EmployeeAttendence implements IComputeEmpWage {
     public static final int is_part_time = 1;
     public static final int is_full_time = 2;
-
     private int numOfCompany = 0;
-    private CompanyEmpWage[] companyEmpWageArray;
+    private LinkedList<CompanyEmpWage> companyEmpWagesList;
+
+
 
     public uc1EmployeeAttendence() {
-        companyEmpWageArray = new CompanyEmpWage[5];
+        companyEmpWagesList = new LinkedList<>();
     }
 
     public void addCompanyEmpWage(String company, int emp_rate_per_hour, int num_of_working_days, int max_hrs_in_month){
-        companyEmpWageArray[numOfCompany] = new CompanyEmpWage(company, emp_rate_per_hour, num_of_working_days, max_hrs_in_month);
-        numOfCompany++;
+        CompanyEmpWage companyEmpWage = new CompanyEmpWage(company, emp_rate_per_hour, num_of_working_days, max_hrs_in_month);
+        companyEmpWagesList.add(companyEmpWage);
     }
 
     public void computeEmpWage(){
-        for (int i = 0; i < numOfCompany; i++){
-            companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(companyEmpWageArray[i]));
-            System.out.println(companyEmpWageArray[i]);
+        for (int i = 0; i < companyEmpWagesList.size(); i++){
+            CompanyEmpWage companyEmpWage = companyEmpWagesList.get(i);
+            companyEmpWage.setTotalEmpWage(this.computeEmpWage(companyEmpWage));
+            System.out.println(companyEmpWage);
         }
     }
     public int computeEmpWage(CompanyEmpWage companyEmpWage) {
