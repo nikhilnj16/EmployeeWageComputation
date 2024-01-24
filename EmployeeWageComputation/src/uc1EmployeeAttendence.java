@@ -1,4 +1,4 @@
-public class uc1EmployeeAttendence {
+public class uc1EmployeeAttendence implements IComputeEmpWage {
     public static final int is_part_time = 1;
     public static final int is_full_time = 2;
 
@@ -9,18 +9,18 @@ public class uc1EmployeeAttendence {
         companyEmpWageArray = new CompanyEmpWage[5];
     }
 
-    private void addCompanyEmpWage(String company, int emp_rate_per_hour, int num_of_working_days, int max_hrs_in_month){
+    public void addCompanyEmpWage(String company, int emp_rate_per_hour, int num_of_working_days, int max_hrs_in_month){
         companyEmpWageArray[numOfCompany] = new CompanyEmpWage(company, emp_rate_per_hour, num_of_working_days, max_hrs_in_month);
         numOfCompany++;
     }
 
-    private void computeEmpWage(){
+    public void computeEmpWage(){
         for (int i = 0; i < numOfCompany; i++){
             companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(companyEmpWageArray[i]));
             System.out.println(companyEmpWageArray[i]);
         }
     }
-    private int computeEmpWage(CompanyEmpWage companyEmpWage) {
+    public int computeEmpWage(CompanyEmpWage companyEmpWage) {
 
         int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
         while (totalEmpHrs <= companyEmpWage.max_hrs_in_month && totalWorkingDays < companyEmpWage.num_of_working_days) {
