@@ -1,11 +1,8 @@
 public class uc1EmployeeAttendence {
     public static final int is_part_time = 1;
     public static final int is_full_time = 2;
-    public static final int emp_rate_per_hour = 20;
-    public static final int num_of_working_days = 20;
-    public static final int max_hrs_in_month = 100;
 
-    public static void computeEmpWage() {
+    public static void computeEmpWage(String company, int emp_rate_per_hour, int num_of_working_days, int max_hrs_in_month) {
 
         int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
         while (totalEmpHrs <= max_hrs_in_month && totalWorkingDays < num_of_working_days) {
@@ -30,7 +27,8 @@ public class uc1EmployeeAttendence {
     }
 
     public static void main(String[] args) {
-        computeEmpWage();
+        computeEmpWage("DMart", 20, 20, 100);
+        computeEmpWage("Jio", 15, 23, 100);
     }
 
 }
