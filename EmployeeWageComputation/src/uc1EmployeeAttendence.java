@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
@@ -6,11 +7,13 @@ public class uc1EmployeeAttendence implements IComputeEmpWage {
     public static final int is_full_time = 2;
     private int numOfCompany = 0;
     private LinkedList<CompanyEmpWage> companyEmpWagesList;
+    private Map<String, CompanyEmpWage> companyToEmpWageMap;
 
 
 
     public uc1EmployeeAttendence() {
         companyEmpWagesList = new LinkedList<>();
+        companyToEmpWageMap = new HashMap<>();
     }
 
     public void addCompanyEmpWage(String company, int emp_rate_per_hour, int num_of_working_days, int max_hrs_in_month){
@@ -25,6 +28,13 @@ public class uc1EmployeeAttendence implements IComputeEmpWage {
             System.out.println(companyEmpWage);
         }
     }
+
+    @Override
+    public int getTotalWage(String company) {
+        return companyToEmpWageMap.get(company).totalEmpWage;
+    }
+
+
     public int computeEmpWage(CompanyEmpWage companyEmpWage) {
 
         int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
